@@ -13,7 +13,12 @@ app.use(express.json());
 //data filled by user will be converted to json
 
 mongoose
-  .connect(process.env.URI)
+  .connect(process.env.URI, {
+    useNewUrlParser: true,
+    useCreateIndex: true,
+    useUnifiedTopology: true,
+    useFindAndModified: false,
+  })
   .then(() => {
     console.log("Database Connected");
     app.listen(PORT || 8000, (err) => {
